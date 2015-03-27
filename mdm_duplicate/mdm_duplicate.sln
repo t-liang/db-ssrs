@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "mdm_duplicate", "mdm_duplicate\mdm_duplicate.rptproj", "{2279C054-5768-444A-82A8-ADA315074559}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2279C054-5768-444A-82A8-ADA315074559}.Debug|Default.ActiveCfg = Debug
+		{2279C054-5768-444A-82A8-ADA315074559}.Debug|Default.Build.0 = Debug
+		{2279C054-5768-444A-82A8-ADA315074559}.Debug|Default.Deploy.0 = Debug
+		{2279C054-5768-444A-82A8-ADA315074559}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{2279C054-5768-444A-82A8-ADA315074559}.DebugLocal|Default.Build.0 = DebugLocal
+		{2279C054-5768-444A-82A8-ADA315074559}.Release|Default.ActiveCfg = Release
+		{2279C054-5768-444A-82A8-ADA315074559}.Release|Default.Build.0 = Release
+		{2279C054-5768-444A-82A8-ADA315074559}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
