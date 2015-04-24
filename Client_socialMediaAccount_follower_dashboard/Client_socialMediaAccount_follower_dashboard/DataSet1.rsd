@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>DataSource1</DataSourceReference>
+      <CommandText>
+
+
+truncate table t1_faceBook 
+truncate table t2_twitter
+truncate table t3_instagram
+truncate table t4_youTubeSubScribers
+truncate table t5_YouTubeViews
+
+
+insert into  t1_faceBook  
+(
+	PartyExternalIdId		
+	,PartyId				 
+	,ExternalId				
+	,ExternalIdTypeId		
+	,displayName			
+	,ExternalIdType			
+	,cnt					
+)
+
+select	a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+		,count(a.partyid) as cnt 
+		from partyexternalId a inner join partyRole b on a.partyId =b.partyid and b.partyRoleTypeId = 1
+		inner join partyName c on c.partyId =a.partyid 
+		left join ExternalIdType d on a.ExternalIdTypeId= d.ExternalIdTypeId
+where a.ExternalIdTypeId = 2
+group by a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+
+
+
+insert into  t2_twitter 
+(
+						 
+	 PartyExternalIdId		 
+	,PartyId				 
+	,ExternalId				
+	,ExternalIdTypeId		
+	,displayName			
+	,ExternalIdType			
+	,cnt					
+)
+select	a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+		,count(a.partyid) as cnt 
+		from partyexternalId a inner join partyRole b on a.partyId =b.partyid and b.partyRoleTypeId = 1
+		inner join partyName c on c.partyId =a.partyid 
+		left join ExternalIdType d on a.ExternalIdTypeId= d.ExternalIdTypeId
+where a.ExternalIdTypeId = 1
+group by a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+
+
+
+
+insert into t3_instagram  
+(
+	 PartyExternalIdId		
+	,PartyId				 
+	,ExternalId				
+	,ExternalIdTypeId		 
+	,displayName			
+	,ExternalIdType			
+	,cnt					 
+)
+select	a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+		,count(a.partyid) as cnt 
+		from partyexternalId a inner join partyRole b on a.partyId =b.partyid and b.partyRoleTypeId = 1
+		inner join partyName c on c.partyId =a.partyid 
+		left join ExternalIdType d on a.ExternalIdTypeId= d.ExternalIdTypeId
+where a.ExternalIdTypeId = 4
+group by a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+
+
+--YouTubeSubscribers
+
+
+insert into  t4_youTubeSubScribers  
+(
+							 
+	PartyExternalIdId		
+	,PartyId				 
+	,ExternalId				
+	,ExternalIdTypeId		 
+	,displayName			
+	,ExternalIdType			
+	,cnt					 
+)
+
+
+select	a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+		,count(a.partyid) as cnt 
+		from partyexternalId a inner join partyRole b on a.partyId =b.partyid and b.partyRoleTypeId = 1
+		inner join partyName c on c.partyId =a.partyid 
+		left join ExternalIdType d on a.ExternalIdTypeId= d.ExternalIdTypeId
+where a.ExternalIdTypeId = 7
+group by a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+
+
+
+
+
+insert into  t5_YouTubeViews 
+(
+	PartyExternalIdId		
+	,PartyId				 
+	,ExternalId				
+	,ExternalIdTypeId		
+	,displayName			
+	,ExternalIdType			
+	,cnt					
+)
+
+
+select	a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+		,count(a.partyid) as cnt 
+		from partyexternalId a inner join partyRole b on a.partyId =b.partyid and b.partyRoleTypeId = 1
+		inner join partyName c on c.partyId =a.partyid 
+		left join ExternalIdType d on a.ExternalIdTypeId= d.ExternalIdTypeId
+where a.ExternalIdTypeId = 8
+group by a.PartyExternalIdId
+		,a.PartyId	
+		,a.ExternalId	
+		,a.ExternalIdTypeId
+		,c.displayName
+		,ExternalIdType
+
+
+
+
+select a.partyExternalIdId 
+       ,a.partyId
+	   ,a.displayName 
+	   ,a.cnt as FaceBook 
+	   ,b.cnt as Twitter
+	   ,c.cnt as Instagram 
+	   ,d.cnt as youTubeSubscribers
+	   ,e.cnt as youTubeViews
+from t1_faceBook a inner join t2_Twitter b			on a.partyId			 = b.partyId 
+                    inner join t3_instagram c			on a.partyId			 = c.partyId  
+					inner join t4_youTubeSubScribers d on a.partyId			 = d.partyId
+					inner join t5_YouTubeViews e		on a.partyId			 = e.partyId
+					
+					  --select * from partyRoleCategory</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="partyExternalIdId">
+        <DataField>partyExternalIdId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="partyId">
+        <DataField>partyId</DataField>
+        <rd:TypeName>System.Guid</rd:TypeName>
+      </Field>
+      <Field Name="displayName">
+        <DataField>displayName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="FaceBook">
+        <DataField>FaceBook</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Twitter">
+        <DataField>Twitter</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Instagram">
+        <DataField>Instagram</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="youTubeSubscribers">
+        <DataField>youTubeSubscribers</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="youTubeViews">
+        <DataField>youTubeViews</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
